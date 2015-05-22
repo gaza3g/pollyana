@@ -2,9 +2,9 @@
 
 namespace Pollyana
 {
-    public class AppUser : ClaimsPrincipal
+    public class AppUserPrincipal : ClaimsPrincipal
     {
-        public AppUser(ClaimsPrincipal principal) : base(principal)
+        public AppUserPrincipal(ClaimsPrincipal principal) : base(principal)
         { }
 
         public string Name
