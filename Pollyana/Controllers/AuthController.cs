@@ -55,14 +55,14 @@ namespace Pollyana.Controllers
             var authManager = ctx.Authentication;
 
             authManager.SignOut("ApplicationCookie");
-            return RedirectToAction("index", "users");
+            return RedirectToAction("index", "home");
         }
 
         private string GetRedirectUrl(string returnUrl)
         {
             if(string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
             {
-                return Url.Action("index", "user");
+                return Url.Action("index", "home");
             }
 
             return returnUrl;
