@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using Pollyana.ViewModels;
 
 namespace Pollyana.Controllers
 {
@@ -71,17 +72,3 @@ namespace Pollyana.Controllers
 
 }
 
-public class LoginModel
-{
-    [Required]
-    [DataType(DataType.EmailAddress)]
-    public string Email { get; set; }
-
-    [Required]
-    [DataType(DataType.Password)]
-    public string Password { get; set; }
-
-    [HiddenInput]
-    public string ReturnUrl { get; set; }
-
-}
