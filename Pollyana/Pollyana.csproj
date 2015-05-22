@@ -138,6 +138,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppDbContext.cs" />
+    <Compile Include="AppUser.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -150,7 +152,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AppController.cs" />
-    <Compile Include="AppUser.cs" />
+    <Compile Include="AppUserPrincipal.cs" />
     <Compile Include="AppViewPage.cs" />
     <Compile Include="Migrations\201505220413211_InitialCreate.cs" />
     <Compile Include="Migrations\201505220413211_InitialCreate.Designer.cs">

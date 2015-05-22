@@ -6,13 +6,35 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using Pollyana.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+
 
 namespace Pollyana.Controllers
 {
     [AllowAnonymous]
     public class AuthController : Controller
     {
-        // GET: Auth
+        private readonly UserManager<AppUser> userManager;
+
+        public AuthController() : this (Startup.UserManagerFactory.Invoke())
+        { }
+
+        public AuthController(UserManager<AppUser> userManager)
+        {
+            this.userManager = userManager;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if(disposing && userManager != null)
+            {
+                userManager.Dispose();
+            }
+
+            base.Dispose(disposing);
+        }
+
         [HttpGet]
         public ActionResult LogIn(string returnUrl)
         {
@@ -24,30 +46,50 @@ namespace Pollyana.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogIn(LoginModel model)
+        public async Task<ActionResult> LogIn(LoginModel model)
         {
             if(!ModelState.IsValid)
                 return View();
 
-            if(model.Email == "admin@admin.com" && model.Password == "password")
+            //if(model.Email == "admin@admin.com" && model.Password == "password")
+            //{
+            //    var identity = new ClaimsIdentity(new[] {
+            //        new Claim(ClaimTypes.Name, "Ben"),
+            //        new Claim(ClaimTypes.Email, "a@b.com"),
+            //        new Claim(ClaimTypes.Country, "England")
+            //    },
+            //    "ApplicationCookie");
+
+            //    var ctx = Request.GetOwinContext();
+            //    var authManager = ctx.Authentication;
+
+            //    authManager.SignIn(identity);
+
+            //    return Redirect(GetRedirectUrl(model.ReturnUrl));
+            //}
+
+            var user = await userManager.FindAsync(model.Email, model.Password);
+
+            if(user != null)
             {
-                var identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, "Ben"),
-                    new Claim(ClaimTypes.Email, "a@b.com"),
-                    new Claim(ClaimTypes.Country, "England")
-                },
-                "ApplicationCookie");
+                var identity = await userManager.CreateIdentityAsync(
+                    user, DefaultAuthenticationTypes.ApplicationCookie);
 
-                var ctx = Request.GetOwinContext();
-                var authManager = ctx.Authentication;
-
-                authManager.SignIn(identity);
+                GetAuthenticationManager().SignIn(identity);
 
                 return Redirect(GetRedirectUrl(model.ReturnUrl));
             }
 
+
+
             ModelState.AddModelError("", "Invalid credentials");
             return View();
+        }
+
+        private IAuthenticationManager GetAuthenticationManager()
+        {
+            var ctx = Request.GetOwinContext();
+            return ctx.Authentication;
         }
 
         public ActionResult LogOut()
