@@ -1,67 +1,31 @@
 namespace Pollyana.Migrations
 {
-    using Pollyana.Models;
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Pollyana.DAL.PollContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Pollyana.AppDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Pollyana.DAL.PollContext context)
+        protected override void Seed(Pollyana.AppDbContext context)
         {
-            var users = new List<User>
-            {
-                new User{
-                    Puid="2AB3B11E-F591-4566-8F2B-13ED2CCD1A8B",
-                    Username="farid",
-                    Fullname="Farid Mohd Ismail",
-                    UserRole = Models.UserRole.Administrator,
-                    LmsDomain="lms.wizlearn.com",
-                    DbInstance="eduservice_asknlearn",
-                    DateCreated=DateTime.Now,
-                    DateModified=DateTime.Now
-                },
-                new User{
-                    Puid="D8254C10-DD6F-45E6-A3AF-2E0F3630CC6F",
-                    Username="ghazaly",
-                    Fullname="Ghazaly H",
-                    UserRole = Models.UserRole.Teacher,
-                    LmsDomain="lms.wizlearn.com",
-                    DbInstance="eduservice_asknlearn",
-                    DateCreated=DateTime.Now,
-                    DateModified=DateTime.Now
-                },
-                new User{
-                    Puid="A587EF4E-5FC2-44FB-882F-91E0EAAB8703",
-                    Username="maideen",
-                    Fullname="Maideen Abdul Aleem",
-                    UserRole = Models.UserRole.Student,
-                    LmsDomain="lms.wizlearn.com",
-                    DbInstance="eduservice_asknlearn",
-                    DateCreated=DateTime.Now,
-                    DateModified=DateTime.Now
-                },
-                new User{
-                    Puid="41EE29CC-BE3E-4E6D-A08A-06C8680C9DE",
-                    Username="tonychoo",
-                    Fullname="Tony Choo",
-                    UserRole = Models.UserRole.Student,
-                    LmsDomain="lms.wizlearn.com",
-                    DbInstance="eduservice_asknlearn",
-                    DateCreated=DateTime.Now,
-                    DateModified=DateTime.Now
-                }
-            };
+            //  This method will be called after migrating to the latest version.
 
-            users.ForEach(s => context.Users.AddOrUpdate(p => p.Fullname, s));
-            context.SaveChanges();
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
     }
 }

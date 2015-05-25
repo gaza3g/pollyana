@@ -16,6 +16,6 @@ namespace Pollyana.Models
         public bool isOpen { get; set; }
         public string AccessCode { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

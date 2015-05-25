@@ -19,8 +19,8 @@ namespace Pollyana.Models
         public int QuestionID { get; set; }
         public int UserID { get; set; }
         public string Data { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateModified { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public DateTime? DateModified { get; set; }
 
         public virtual Question Question { get; set; }
     }

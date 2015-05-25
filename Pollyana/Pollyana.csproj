@@ -146,28 +146,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="DAL\PollContext.cs" />
-    <Compile Include="DAL\PollInitializer.cs" />
+    <Compile Include="Controllers\UsersController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="AppUserPrincipal.cs" />
     <Compile Include="AppViewPage.cs" />
-    <Compile Include="Migrations\201505220413211_InitialCreate.cs" />
-    <Compile Include="Migrations\201505220413211_InitialCreate.Designer.cs">
-      <DependentUpon>201505220413211_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505220441499_AddUserUserRole.cs" />
-    <Compile Include="Migrations\201505220441499_AddUserUserRole.Designer.cs">
-      <DependentUpon>201505220441499_AddUserUserRole.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Poll.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Response.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="ViewModels\LogInModel.cs" />
@@ -205,6 +196,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -220,16 +212,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Auth\LogIn.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DAL\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -240,14 +228,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505220413211_InitialCreate.resx">
-      <DependentUpon>201505220413211_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505220441499_AddUserUserRole.resx">
-      <DependentUpon>201505220441499_AddUserUserRole.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

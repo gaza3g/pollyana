@@ -9,7 +9,7 @@ namespace Pollyana.DAL
         public PollContext() : base("PollContext")
         { }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Poll> Polls { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Response> Responses { get; set; }

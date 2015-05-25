@@ -6,14 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Pollyana.DAL;
 using Pollyana.Models;
 
 namespace Pollyana.Controllers
 {
     public class UsersController : Controller
     {
-        private PollContext db = new PollContext();
+        private AppDbContext db = new AppDbContext();
 
         // GET: Users
         public ActionResult Index()
@@ -28,7 +27,7 @@ namespace Pollyana.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            AppUser user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -47,7 +46,7 @@ namespace Pollyana.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Puid,Username,Fullname,UserRole,LmsDomain,DbInstance,DateCreated,DateModified")] User user)
+        public ActionResult Create([Bind(Include = "UserID,Puid,Username,Fullname,UserRole,LmsDomain,DbInstance,DateCreated,DateModified")] AppUser user)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +65,7 @@ namespace Pollyana.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            AppUser user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -79,7 +78,7 @@ namespace Pollyana.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,Puid,Username,Fullname,UserRole,LmsDomain,DbInstance,DateCreated,DateModified")] User user)
+        public ActionResult Edit([Bind(Include = "UserID,Puid,Username,Fullname,UserRole,LmsDomain,DbInstance,DateCreated,DateModified")] AppUser user)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +96,7 @@ namespace Pollyana.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            AppUser user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -110,7 +109,7 @@ namespace Pollyana.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
+            AppUser user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
