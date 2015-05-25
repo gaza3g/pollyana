@@ -147,6 +147,7 @@
     <Compile Include="Controllers\AppUsersController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PollsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,6 +222,11 @@
     <Content Include="Views\AppUsers\Details.cshtml" />
     <Content Include="Views\AppUsers\Edit.cshtml" />
     <Content Include="Views\AppUsers\Index.cshtml" />
+    <Content Include="Views\Polls\Create.cshtml" />
+    <Content Include="Views\Polls\Delete.cshtml" />
+    <Content Include="Views\Polls\Details.cshtml" />
+    <Content Include="Views\Polls\Edit.cshtml" />
+    <Content Include="Views\Polls\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
