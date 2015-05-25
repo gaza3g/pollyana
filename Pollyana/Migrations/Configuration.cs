@@ -1,6 +1,10 @@
 namespace Pollyana.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
+    using System.Web.Mvc;
+    using System.Security.Claims;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -26,6 +30,16 @@ namespace Pollyana.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            if (!(context.Users.Any(u => u.UserName == "farid@wizlearn.com")))
+            {
+                var userStore = new UserStore<AppUser>(context);
+                var userManager = new UserManager<AppUser>(userStore);
+                var userToInsert = new AppUser { UserName = "farid@wizlearn.com", Country = "Singapore" };
+                userManager.Create(userToInsert, "password");
+            }
+
+
         }
     }
 }

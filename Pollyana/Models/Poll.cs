@@ -9,7 +9,6 @@ namespace Pollyana.Models
     public class Poll
     {
         public int PollID { get; set; }
-        public int UserID { get; set; }
         public string Title { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
@@ -17,5 +16,6 @@ namespace Pollyana.Models
         public string AccessCode { get; set; }
 
         public virtual AppUser User { get; set; }
+
     }
 }

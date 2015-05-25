@@ -16,7 +16,6 @@ namespace Pollyana.Models
     public class Response
     {
         public int ResponseID { get; set; }
-        public int QuestionID { get; set; }
         public int UserID { get; set; }
         public string Data { get; set; }
         public DateTime? DateCreated { get; set; }
