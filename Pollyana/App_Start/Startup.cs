@@ -30,6 +30,8 @@ namespace Pollyana
                     AllowOnlyAlphanumericUserNames = false
                 };
 
+                usermanager.ClaimsIdentityFactory = new AppUserClaimsIdentityFactory();
+
                 return usermanager;
             };
         }
